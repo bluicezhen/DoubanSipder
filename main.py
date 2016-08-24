@@ -1,5 +1,4 @@
 import http.client
-import logging
 import time
 from pprint import pprint
 from bs4 import BeautifulSoup
@@ -10,7 +9,6 @@ COMMON_HEADERS =    {
     "User-Agent": "Spider-37",
     "Connection": "keep-alive"
 }
-logging.basicConfig(level=logging.INFO)
 
 if __name__ == '__main__':
     def spider_movie():
@@ -38,13 +36,39 @@ if __name__ == '__main__':
                 movie_connection = http.client.HTTPSConnection("movie.douban.com")
                 movie_connection.request("GET", url, headers=COMMON_HEADERS)
                 movies_page_response = movie_connection.getresponse()
-            logging.info("Get movie infomation page %d:" % (i / 15 + 1))
+            print("Get movie infomation page %d:" % (i / 15 + 1))
             movies_html = movies_page_response.read()
+
+            # Find movies in page i.
+            movies_soup = BeautifulSoup(movies_html, "html.parser").find("div", attrs={"class": "grid-view"})\
+                .find_all("div", attrs={"class": "item"})
+
+            for ms in movies_soup:
+                title = ms.find("em").text.split(" ", 1)[0]
+                date = ms.find("span", attrs={"class": "date"}).text
+                score = 0
+                for j in range(5, 0, -1):
+                    score_html = ms.find("span", attrs={"class": "rating%d-t" % j})
+                    if score_html is not None:
+                        score = j
+                        break
+                try:
+                    comment = ms.find("span", attrs={"class": "comment"}).text
+                except AttributeError:
+                    comment = ""
+                link = ms.find("a").attrs["href"]
+                image = "https://img3.doubanio.com/view/photo/photo/public/%s"\
+                        % ms.find("img").attrs["src"].split("/public/")[1]
+
+                print("\n\tFind movie\n\t\ttitle:   %s\n\t\tdate:    %s\n\t\tscore:   %d\n\t\tcomment: %s"
+                      "\n\t\tlink:    %s\n\t\timage:   %s"
+                      % (title, date, score, comment, link, image))
+
+            if i == 0:     # Just for test
+                break       # Just for test
 
             time.sleep(3)
 
-            if i == 45:     # Just for test
-                break       # Just for test
 
 if __name__ == "__main__":
     spider_movie()
