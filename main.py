@@ -44,7 +44,7 @@ def spider_movie():
             .find_all("div", attrs={"class": "item"})
 
         for ms in movies_soup:
-            title = ms.find("em").text.split(" ", 1)[0]
+            title = ms.find("em").text.split(" /", 1)[0]
             date = ms.find("span", attrs={"class": "date"}).text
             score = 0
             for j in range(5, 0, -1):

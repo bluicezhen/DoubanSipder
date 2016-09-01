@@ -22,7 +22,7 @@ def download_images(image_list: list):
         conn.request("GET", url)
         response = conn.getresponse()
         image = Image.open(io.BytesIO(response.read()))
-        size = (int(image.size[0] * 300 / image.size[1]), 300)
+        size = (int(image.size[0] * 200 / image.size[1]), 200)
         image.thumbnail(size)
         image.save("img/%s.jpg" % image_info["name"], "JPEG")
         print("Download file: %s.jpg" % image_info["name"])
