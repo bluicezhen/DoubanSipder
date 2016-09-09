@@ -4,3 +4,5 @@
 img/
 my_movie.json
 
+__pycache__/
+mytest/

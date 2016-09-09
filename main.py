@@ -1,7 +1,10 @@
+import click
 import http.client
 import json
 import qiniu
+import os
 from bs4 import BeautifulSoup
+from func_init import init
 
 # 请求通用头部
 COMMON_HEADERS = {
@@ -104,6 +107,12 @@ def spider_movie(douban_id: str):
     file.write(movies_json)
     file.close()
 
+
+@click.group()
+def main():
+    """主函数"""
+    pass
+
 if __name__ == "__main__":
-    douban_id = "bluicezhen"
-    spider_movie(douban_id)
+    main.add_command(init)
+    main()
