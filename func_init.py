@@ -3,7 +3,7 @@ import json
 import os
 
 
-@click.command(help='Create a new blog, default name is "blog"')
+@click.command(help='初始化一个豆瓣爬虫，创建目录与配置文件')
 @click.argument("name", default="blog")
 def init(name):
     """初始化一个豆瓣爬虫，创建目录与配置文件
@@ -18,15 +18,17 @@ def init(name):
         },
         "qiniu": {
             "access_key": "xxx",
-            "secret_key": "xxx"
+            "secret_key": "xxx",
+            "bucket_name": "xxx"
         }
     }
 
     try:
-        os.mkdir(name, mode=0o755)          # 主目录
-        os.mkdir("%s/movie" % name, mode=0o755)    # 电影目录
+        os.mkdir(name, mode=0o755)                      # 主目录
+        os.mkdir("%s/movie" % name, mode=0o755)         # 电影目录
+        os.mkdir("%s/movie/poster" % name, mode=0o755)  # 电影海报目录
     except FileExistsError:
-        print("【致命错误】目录%s已存在，无法初始化！" % name)
+        click.secho("【致命错误】目录%s已存在，无法初始化！" % name, fg="red")
         return
 
     # 创建默认配置文件
@@ -34,4 +36,4 @@ def init(name):
     config_file.write(json.dumps(default_config, ensure_ascii=False, indent=4))
     config_file.close()
 
-    print("初始化成功，创建目录【%s】" % name)
+    click.secho("初始化成功，创建目录【%s】" % name, fg="green")

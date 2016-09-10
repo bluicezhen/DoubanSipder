@@ -2,22 +2,17 @@ import click
 import http.client
 import json
 import qiniu
-import os
 from bs4 import BeautifulSoup
 from func_init import init
+from func_spider_movie import movie_get, movie_poster_download
 
-# 请求通用头部
 COMMON_HEADERS = {
     "User-Agent": "Spider-37",
     "Connection": "keep-alive"
 }
 
 
-def book():
-    pass
-
-
-def spider_movie(douban_id: str):
+def spider_movi(douban_id: str):
     URL_MOV = "movie.douban.com"    # 豆瓣电影域名
     URL_IMG = "img3.doubanio.com"   # 豆瓣电影海报域名
 
@@ -81,7 +76,7 @@ def spider_movie(douban_id: str):
             except IndexError:
                 """ 豆瓣电影某些海报的链接（估计是老电影，像《香巴拉信使》的海报链接是(https://movie.douban.com/subject/2224967/)
                 和其他的不太一样，要特殊处理"""
-                image = "https://img3.doubanio.com/lpic/%s" % soup_movie.find("img").attrs["src"].split("/spic/")[1]
+                url = "https://img3.doubanio.com/lpic/%s" % soup_movie.find("img").attrs["src"].split("/spic/")[1]
             conn_img.request("GET", url)
             response = conn_img.getresponse()
             body = response.read()
@@ -110,9 +105,10 @@ def spider_movie(douban_id: str):
 
 @click.group()
 def main():
-    """主函数"""
     pass
 
 if __name__ == "__main__":
     main.add_command(init)
+    main.add_command(movie_get)
+    main.add_command(movie_poster_download)
     main()
