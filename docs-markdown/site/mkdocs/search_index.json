@@ -1,0 +1,29 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "\u4e09\u5341\u4e03\u8c46\u74e3\u722c\u722c\n\n\n\n\nhttps://github.com/bluicezhen/Spider-For-Douban\n\n\n\n\n\u7b80\u4ecb\uff1a\n\n\n\u4e09\u5341\u4e03\u8c46\u74e3\u722c\u722c\n\u662f\u4e00\u4e2a\u7b80\u5355\u7684\u8c46\u74e3\u722c\u866b\u7a0b\u5e8f\u7a0b\u5e8f\uff0c\u4e3b\u8981\u6709\u4e00\u4e0b\u529f\u80fd\uff1a\n\n\n\n\n\u6839\u636e\u7528\u6237ID\u722c\u53d6\u7528\u6237\u6807\u8bb0\u7684\u7535\u5f71\uff0c\u5e76\u4fdd\u5b58\u4e3ajson\u3002\n\n\n\u4e0b\u8f7d\u8c46\u74e3\u7535\u5f71\u7684\u6d77\u62a5\u3002\n\n\n\u5c06\u6d77\u62a5\u4e0a\u4f20\u81f3\u4e03\u725b\u4e91\u5b58\u50a8\n\n\n\n\n\u5b89\u88c5\uff1a\n\n\n\u5f53\u524d\u4e0d\u652f\u6301\u81ea\u52a8\u5b89\u88c5\uff0c\nmain.py\n\u662f\u5165\u53e3\u6587\u4ef6\uff0c\u6709\u7ecf\u9a8c\u7684\u7528\u6237\u53ef\u4ee5\u8bd5\u56fe\u81ea\u5df1\u5199shell\u811a\u672c\uff0c\u4e0d\u4f1a\u5199shell\u811a\u672c\u7684\u53ef\u4ee5\u5c1d\u8bd5\u548c\u6211\u4ea4\u4e2a\u670b\u53cb\u3002\n\n\n\u6211\u81ea\u5df1\u7684shell\u811a\u672c\u662f\u8fd9\u6837\u5199\u7684\uff1a\n\n\n#!/bin/bash\nsource /Users/bluicezhen/Documents/Code/Blog-Server/.venv/bin/activate\npython /Users/bluicezhen/Documents/Code/Blog-Server/main.py $1 $2\n\n\n\n\n\u7528\u6cd5\uff1a\n\n\nUsage: main.py [OPTIONS] COMMAND [ARGS]...\n\nOptions:\n  --help  Show this message and exit.\n\nCommands:\n  init                   \u521d\u59cb\u5316\u4e00\u4e2a\u8c46\u74e3\u722c\u866b\uff0c\u521b\u5efa\u76ee\u5f55\u4e0e\u914d\u7f6e\u6587\u4ef6\n  movie-get              \u83b7\u53d6\u5e76\u5b58\u50a8\u7535\u5f71\u4fe1\u606f\n  movie-poster-download  \u4e0b\u8f7d\u7535\u5f71\u6d77\u62a5\n  movie-upload           \u4e0a\u4f20\u6d77\u62a5\u81f3\u4e03\u725b\u4e91\u5b58\u50a8\n  movie_to-html          \u7f16\u8bd1\u751f\u6210HTML\n\nProcess finished with exit code 0", 
+            "title": "Home"
+        }, 
+        {
+            "location": "/#_1", 
+            "text": "https://github.com/bluicezhen/Spider-For-Douban", 
+            "title": "\u4e09\u5341\u4e03\u8c46\u74e3\u722c\u722c"
+        }, 
+        {
+            "location": "/#_2", 
+            "text": "\u4e09\u5341\u4e03\u8c46\u74e3\u722c\u722c \u662f\u4e00\u4e2a\u7b80\u5355\u7684\u8c46\u74e3\u722c\u866b\u7a0b\u5e8f\u7a0b\u5e8f\uff0c\u4e3b\u8981\u6709\u4e00\u4e0b\u529f\u80fd\uff1a   \u6839\u636e\u7528\u6237ID\u722c\u53d6\u7528\u6237\u6807\u8bb0\u7684\u7535\u5f71\uff0c\u5e76\u4fdd\u5b58\u4e3ajson\u3002  \u4e0b\u8f7d\u8c46\u74e3\u7535\u5f71\u7684\u6d77\u62a5\u3002  \u5c06\u6d77\u62a5\u4e0a\u4f20\u81f3\u4e03\u725b\u4e91\u5b58\u50a8", 
+            "title": "\u7b80\u4ecb\uff1a"
+        }, 
+        {
+            "location": "/#_3", 
+            "text": "\u5f53\u524d\u4e0d\u652f\u6301\u81ea\u52a8\u5b89\u88c5\uff0c main.py \u662f\u5165\u53e3\u6587\u4ef6\uff0c\u6709\u7ecf\u9a8c\u7684\u7528\u6237\u53ef\u4ee5\u8bd5\u56fe\u81ea\u5df1\u5199shell\u811a\u672c\uff0c\u4e0d\u4f1a\u5199shell\u811a\u672c\u7684\u53ef\u4ee5\u5c1d\u8bd5\u548c\u6211\u4ea4\u4e2a\u670b\u53cb\u3002  \u6211\u81ea\u5df1\u7684shell\u811a\u672c\u662f\u8fd9\u6837\u5199\u7684\uff1a  #!/bin/bash\nsource /Users/bluicezhen/Documents/Code/Blog-Server/.venv/bin/activate\npython /Users/bluicezhen/Documents/Code/Blog-Server/main.py $1 $2", 
+            "title": "\u5b89\u88c5\uff1a"
+        }, 
+        {
+            "location": "/#_4", 
+            "text": "Usage: main.py [OPTIONS] COMMAND [ARGS]...\n\nOptions:\n  --help  Show this message and exit.\n\nCommands:\n  init                   \u521d\u59cb\u5316\u4e00\u4e2a\u8c46\u74e3\u722c\u866b\uff0c\u521b\u5efa\u76ee\u5f55\u4e0e\u914d\u7f6e\u6587\u4ef6\n  movie-get              \u83b7\u53d6\u5e76\u5b58\u50a8\u7535\u5f71\u4fe1\u606f\n  movie-poster-download  \u4e0b\u8f7d\u7535\u5f71\u6d77\u62a5\n  movie-upload           \u4e0a\u4f20\u6d77\u62a5\u81f3\u4e03\u725b\u4e91\u5b58\u50a8\n  movie_to-html          \u7f16\u8bd1\u751f\u6210HTML\n\nProcess finished with exit code 0", 
+            "title": "\u7528\u6cd5\uff1a"
+        }
+    ]
+}
