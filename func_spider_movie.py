@@ -1,6 +1,7 @@
 import click
 import json
 import http.client
+import qiniu
 from bs4 import BeautifulSoup
 from func import load_config, COMMON_HEADERS
 
@@ -43,6 +44,34 @@ def movie_poster_download():
     movies = json.load(movies_file)
 
     movie_poster_download_core(movies)
+
+
+@click.command(name="movie-upload", help='上传海报至七牛云存储')
+def movie_upload():
+    movies_file = open("movie/movies.json")
+    movies = json.load(movies_file)
+
+    qiniu_config = load_config()["qiniu"]
+    qiniu_access_key = qiniu_config["access_key"]
+    qiniu_secret_key = qiniu_config["secret_key"]
+    qiniu_bucket_name = qiniu_config["bucket_name"]
+
+    qi = qiniu.Auth(qiniu_access_key, qiniu_secret_key)
+
+    for movie in movies:
+        file_name = "movie/poster/%s.%s.jpg" % (movie["date"], movie["title"])
+        file_path = "movie/poster/%s.%s.jpg" % (movie["date"], movie["title"])
+        upload_token = qi.upload_token(qiniu_bucket_name, file_name, 3600)
+        ret, info = qiniu.put_file(upload_token, file_name, file_path)
+        if info.status_code != 200:
+            click.echo("上传失败，请检查相关参数设置是否正确")
+            continue
+        click.secho("上传成功    海报《%s》" % movie["title"])
+
+
+@click.command(name="movie_to-html", help="编译生成HTML")
+def movie_compile_to_html():
+    pass
 
 
 def movie_poster_download_core(movies: list):
