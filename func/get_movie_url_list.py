@@ -1,17 +1,17 @@
 import requests
 from bs4 import BeautifulSoup
+from time import sleep
+from typing import List
 
 
-def get_movie_list():
+def get_movie_url_list(douban_username: str) -> List[str]:
     start = 0
     movie_href_list = []
 
     while True:
-        url = f"https://movie.douban.com/people/bluicezhen/collect?" \
+        url = f"https://movie.douban.com/people/{ douban_username }/collect?" \
               f"start={ start }&sort=time&rating=all&filter=all&mode=list"
-        res = requests.get(url,
-                           proxies={"http": "http://127.0.0.1:8888", "https": "http://127.0.0.1:8888"},
-                           verify=False)
+        res = requests.get(url)
         start += 30
 
         soup = BeautifulSoup(res.text, "html.parser")
@@ -26,8 +26,10 @@ def get_movie_list():
             movie_href_list.append(e_a.attrs["href"])
         print(f"Found: { len(movie_href_list) } movies.")
 
-    print(len(movie_href_list))
+        sleep(1)
+
+    return movie_href_list
 
 
 if __name__ == "__main__":
-    get_movie_list()
+    get_movie_url_list("bluicezhen")
