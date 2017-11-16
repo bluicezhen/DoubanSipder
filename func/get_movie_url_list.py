@@ -26,8 +26,6 @@ def get_movie_url_list(douban_username: str) -> List[str]:
             movie_href_list.append(e_a.attrs["href"])
         print(f"Found: { len(movie_href_list) } movies.")
 
-        sleep(1)
-
     return movie_href_list
 
 
