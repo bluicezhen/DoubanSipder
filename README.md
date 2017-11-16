@@ -1,3 +1,3 @@
-# Spider For 豆瓣
+# Guss What You like: Movie
 
-Please read https://bluicezhen.github.io/Spider-For-Douban
+> A spider application for guess what's movie you like by [Dou Ban Movie](https://movie.douban.com/).
