@@ -3,7 +3,10 @@ from bs4 import BeautifulSoup
 
 
 def get_movie_info(url: str):
-    res = requests.get(url)
+    # res = requests.get(url)
+    res = requests.get(url,
+                       proxies={'http': 'http://127.0.0.1:8888', 'https': 'http://127.0.0.1:8888'},
+                       verify=False)
     soup = BeautifulSoup(res.text, "html.parser")
     movie = {}
 

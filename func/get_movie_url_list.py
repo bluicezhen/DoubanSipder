@@ -10,10 +10,10 @@ def get_movie_url_list(douban_username: str) -> List[Dict[str, Any]]:
     while True:
         url = f"https://movie.douban.com/people/{ douban_username }/collect?" \
               f"start={ start }&sort=time&rating=all&filter=all&mode=list"
-        # res = requests.get(url,
-        # proxies={'http': 'http://127.0.0.1:8888', 'https': 'http://127.0.0.1:8888'}
-        # , verify=False)
-        res = requests.get(url)
+        res = requests.get(url,
+                           proxies={'http': 'http://127.0.0.1:8888', 'https': 'http://127.0.0.1:8888'},
+                           verify=False)
+        # res = requests.get(url)
         start += 30
 
         soup = BeautifulSoup(res.text, "html.parser")
