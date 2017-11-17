@@ -23,6 +23,13 @@ def get_movie_info(url: str):
     for e_director in e_director_list:
         movie["director"].append({"name": e_director.text, "url": e_director.attrs["href"]})
 
+    # Get movie actor
+    e_actor_list = soup.find_all("a", {"rel": "v:starring"})
+    movie["actor"] = []
+    for e_actor in e_actor_list:
+        movie["actor"].append({"name": e_actor.text, "url": e_actor.attrs["href"]})
+    movie["actor"] = movie["actor"][0:7]
+
     return movie
 
 
