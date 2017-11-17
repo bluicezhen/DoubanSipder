@@ -26,8 +26,8 @@ def get_movie_url_list(douban_username: str) -> List[Dict[str, Any]]:
         for e_movie_href_in_page in e_movie_href_list_in_page:
             try:
                 movie_href_list.append({
-                    "href": e_movie_href_in_page.find("a").attrs["href"],
-                    "star": int(
+                    "url": e_movie_href_in_page.find("a").attrs["href"],
+                    "mark": int(
                         e_movie_href_in_page.find("div", {"class": "date"}).find("span").attrs["class"][0][6]) * 2
                 })
             except AttributeError:
@@ -36,6 +36,8 @@ def get_movie_url_list(douban_username: str) -> List[Dict[str, Any]]:
                       e_movie_href_in_page.find("a").attrs["href"])
 
         print(f"Found: { len(movie_href_list) } movies.")
+
+        # break
 
     return movie_href_list
 

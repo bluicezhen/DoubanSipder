@@ -9,6 +9,7 @@ def get_movie_info(url: str):
 
     # Get movie name
     movie["name"] = soup.find("span", {"property": "v:itemreviewed"}).text
+    print("Analyze:", movie["name"])
 
     # Get movie release year
     movie["year"] = soup.find("span", {"class": "year"}).text[1:5]
