@@ -1,15 +1,18 @@
 import requests
 from bs4 import BeautifulSoup
-from typing import List
+from typing import Any, Dict, List
 
 
-def get_movie_url_list(douban_username: str) -> List[str]:
+def get_movie_url_list(douban_username: str) -> List[Dict[str, Any]]:
     start = 0
     movie_href_list = []
 
     while True:
         url = f"https://movie.douban.com/people/{ douban_username }/collect?" \
               f"start={ start }&sort=time&rating=all&filter=all&mode=list"
+        # res = requests.get(url,
+        # proxies={'http': 'http://127.0.0.1:8888', 'https': 'http://127.0.0.1:8888'}
+        # , verify=False)
         res = requests.get(url)
         start += 30
 
@@ -21,12 +24,23 @@ def get_movie_url_list(douban_username: str) -> List[str]:
             break
 
         for e_movie_href_in_page in e_movie_href_list_in_page:
-            e_a = e_movie_href_in_page.find("a")
-            movie_href_list.append(e_a.attrs["href"])
+            try:
+                movie_href_list.append({
+                    "href": e_movie_href_in_page.find("a").attrs["href"],
+                    "star": int(
+                        e_movie_href_in_page.find("div", {"class": "date"}).find("span").attrs["class"][0][6]) * 2
+                })
+            except AttributeError:
+                print("You did not mark this movie:",
+                      e_movie_href_in_page.find("a").text.replace('\n', "").replace(' ', ""),
+                      e_movie_href_in_page.find("a").attrs["href"])
+
         print(f"Found: { len(movie_href_list) } movies.")
 
     return movie_href_list
 
 
 if __name__ == "__main__":
-    get_movie_url_list("bluicezhen")
+    import json
+
+    print(json.dumps(get_movie_url_list("bluicezhen"), ensure_ascii=False, indent=4))
